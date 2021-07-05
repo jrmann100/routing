@@ -7,14 +7,11 @@ window.addEventListener("popstate", ev => {
 
 async function load(path) {
     document.querySelector("#count").textContent = Number(document.querySelector("#count").textContent) + 1;
-
-    // account for baseURI?
-    path = path.replace(new RegExp("^" + new URL(document.baseURI).pathname.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')),'');
     
     if (path === "/") {
         path = "/index";
     }
-    const req = await fetch("/fragments" + path);
+    const req = await fetch(new URL(document.baseURI).pathname + "/fragments" + path);
     const body = await req.text();
     const fragment = new DOMParser().parseFromString(body, 'text/html');
 
