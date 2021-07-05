@@ -7,9 +7,9 @@ window.addEventListener("popstate", ev => {
 
 async function load(path) {
     document.querySelector("#count").textContent = Number(document.querySelector("#count").textContent) + 1;
-    
-    path = path.replace(new RegExp("^" + new URL(document.baseURI).pathname.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')),'');
-    
+
+    path = path.replace(new RegExp("^" + new URL(document.baseURI).pathname.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')), '');
+
     if (path === "/") {
         path = "/index";
     }
@@ -23,7 +23,7 @@ async function load(path) {
     main.append(...fragment.body.children);
 
     document.head.querySelectorAll("[data-is-fragment=yes]").forEach(el => el.remove());
-    fragment.head.querySelectorAll("*").forEach(el => el.dataset["isFragment"] = "yes");    
+    fragment.head.querySelectorAll("*").forEach(el => el.dataset["isFragment"] = "yes");
     document.head.append(...fragment.head.children);
 
 }
