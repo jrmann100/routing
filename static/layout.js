@@ -8,6 +8,9 @@ window.addEventListener("popstate", ev => {
 async function load(path) {
     document.querySelector("#count").textContent = Number(document.querySelector("#count").textContent) + 1;
 
+    // account for baseURI?
+    path = path.replace(new RegExp("^" + new URL(document.baseURI).pathname.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')),'');
+    
     if (path === "/") {
         path = "/index";
     }
